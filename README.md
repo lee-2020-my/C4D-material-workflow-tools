@@ -4,6 +4,25 @@ Open-source **Cinema 4D Python utilities** for repetitive material workflows, wi
 
 [Latest release: v1.0.0](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/tag/v1.0.0) · [简体中文](README.zh-CN.md) · [MIT License](LICENSE)
 
+## Quick download
+
+**You do not need to download the whole repository.** Choose the tool you want:
+
+| Download | Best for |
+|---|---|
+| [**Redshift PBR Material Builder v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/Redshift-PBR-Material-Builder-v1.0.0.zip) | Automatically building and connecting Redshift PBR materials |
+| [**Material Tag Organizer v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/Material-Tag-Organizer-v1.0.0.zip) | Cleaning and reorganizing Cinema 4D material/selection tags; works with native C4D materials and Redshift materials |
+| [**All tools v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/C4D-Material-Workflow-Tools-v1.0.0.zip) | Installing both tools |
+
+## Installation
+
+1. Download one of the ZIP files above and extract it.
+2. Put the extracted plugin folder in a location such as `D:\C4D_Plugins\`.
+3. In Cinema 4D, open **Preferences > Plugins** and add `D:\C4D_Plugins\` to the plugin search paths.
+4. Restart Cinema 4D. The installed tool will appear under **Extensions**.
+
+> **Redshift PBR Material Builder** requires Redshift. **Material Tag Organizer** works at Cinema 4D's material/tag level and is not limited to Redshift.
+
 ## Included tools
 
 | Tool | What it does |
@@ -17,40 +36,31 @@ These tools were built around practical Cinema 4D production workflows and are r
 
 ### Main features
 
-- Detects common texture channels from filenames:
-  - Base Color / Albedo / Diffuse
-  - Ambient Occlusion
-  - Roughness
-  - Metalness
-  - Normal / Bump
-  - Displacement / Height
-  - Opacity / Alpha
-  - Emission
+- Detects Base Color / Albedo / Diffuse, AO, Roughness, Metalness, Normal / Bump, Displacement / Height, Opacity / Alpha and Emission from filenames.
 - Sets **sRGB** for color/emission textures and **Raw** for data textures.
 - Connects textures to a Redshift Standard Material.
 - Adds helper nodes for AO, roughness, bump/normal and displacement workflows.
-- Creates a shared scale control for texture sampler nodes.
 - Can scan a folder and batch-build materials when at least three recognized channel types are found for a texture set.
 - Can rename the material from the detected texture-set name.
 - Can assign the generated material to the active object and enable Redshift subdivision/displacement when displacement is present.
 
-### Quick start: auto-connect an existing material
+### Auto-connect an existing material
 
-1. Create a Redshift Standard Material.
+1. Create a **Redshift Standard Material**.
 2. Add your PBR texture nodes to the material graph.
 3. Make the material active in Cinema 4D.
-4. Run **Redshift PBR Material Builder** and choose the auto-connect action.
+4. Open **Extensions > Redshift PBR Material Builder** and run the auto-connect action.
 
-The plugin scans texture sampler nodes in the active Redshift material, classifies them by filename, applies color-space settings and creates the required connections.
+The plugin scans texture sampler nodes, classifies them by filename, applies color-space settings and creates the required connections.
 
-### Quick start: batch-create from a folder
+### Batch-create from a folder
 
 1. Put one or more PBR texture sets in a folder.
-2. Run **Redshift PBR Material Builder**.
+2. Open **Extensions > Redshift PBR Material Builder**.
 3. Choose the folder import action.
-4. The plugin groups recognized texture sets and creates Redshift materials automatically.
+4. Select the texture folder. The plugin groups recognized texture sets and creates Redshift materials automatically.
 
-### Filename examples
+Example filenames:
 
 ```text
 Wood_BaseColor.png
@@ -61,7 +71,7 @@ Wood_AO.png
 Wood_Displacement.exr
 ```
 
-`Gloss`/`Glossiness` maps are intentionally **not** treated as Roughness automatically because they require inversion. This avoids silently building the physically opposite result.
+`Gloss`/`Glossiness` maps are intentionally **not** treated as Roughness automatically because they require inversion.
 
 ## 2. Material Tag Organizer
 
@@ -77,56 +87,27 @@ The organizer works at Cinema 4D's material/tag level and is **not limited to Re
 - Merges materials that share the same normalized base name.
 - Sorts document materials alphabetically.
 - Standardizes material names with an `M_` prefix and safe characters.
-- Rebuilds local material assignments using predictable selection names such as:
-
-```text
-00_M_CarPaint_Set
-01_M_Glass_Set
-02_M_Rubber_Set
-```
-
+- Rebuilds local material assignments using predictable selection names such as `00_M_CarPaint_Set`.
 - Shows a summary after processing.
+
+### Use
+
+1. Open a copy of the scene you want to clean up.
+2. Select one or more polygon objects.
+3. Open **Extensions > Material Tag Organizer**.
+4. Choose the cleanup/merge/organization options you need and run the tool.
+
+> **Backup recommended:** cleanup operations can modify material tags, polygon selections and material assignments.
 
 ### Important limitation
 
-Duplicate-material merging is currently **name-based**, not shader-graph-based. The organizer does not depend on a specific renderer for tag cleanup, but it also does not compare renderer-specific shader graphs when deciding whether materials are duplicates.
-
-If different materials intentionally use names such as `Paint`, `Paint.1` and `Paint.2`, review the scene before running merge/organize on production data. Use versioned scene files or a backup for destructive cleanup operations.
-
-## Installation
-
-Each tool is self-contained.
-
-```text
-plugins/
-├── redshift-pbr-material-builder/
-│   ├── RedshiftPBRMaterialBuilder.pyp
-│   └── RedshiftPBRMaterialBuilder.png
-└── material-tag-organizer/
-    ├── MaterialTagOrganizer.pyp
-    └── MaterialTagOrganizer.png
-```
-
-Copy the plugin folder you want into a Cinema 4D plugin location, then restart Cinema 4D.
-
-For **Redshift PBR Material Builder**, Redshift and its node material system must be available.
+Duplicate-material merging is currently **name-based**, not shader-graph-based. If different materials intentionally use names such as `Paint`, `Paint.1` and `Paint.2`, review the scene before running merge/organize on production data.
 
 ## Compatibility
 
 The tools use Cinema 4D's Python API; the PBR builder additionally uses Redshift/Maxon node APIs. API identifiers can change between Cinema 4D/Redshift releases, so compatibility may vary by version.
 
 The command plugin IDs included here are the IDs used by the author's current local workflow. If you redistribute a modified build as a separately registered Cinema 4D plugin, use an appropriate unique plugin ID.
-
-## Changes in the open-source release
-
-- Added safe handling for missing material references in Material Tag Organizer.
-- Added Alpha/Opacity and Emission connections to the existing-material auto-link workflow.
-- Explicitly creates new PBR graphs in the Redshift node space.
-- Added safer Redshift IOR-port lookup for API/version differences.
-- Stopped treating Gloss/Glossiness as Roughness without inversion.
-- Renamed the public tools for clearer discoverability.
-
-See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## Roadmap
 
