@@ -1,17 +1,17 @@
 # C4D Material Workflow Tools
 
-A small open-source toolkit for speeding up repetitive material work in **Cinema 4D**, with a focus on **Redshift PBR setup** and **material-tag cleanup for imported production assets**.
+Open-source **Cinema 4D Python utilities** for repetitive material workflows, with a focus on Redshift PBR setup and material-tag cleanup for imported production assets.
 
-The repository currently contains two independent Cinema 4D Python plugins:
+[Latest release: v1.0.0](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/tag/v1.0.0) · [简体中文](README.zh-CN.md) · [MIT License](LICENSE)
+
+## Included tools
 
 | Tool | What it does |
 |---|---|
-| **Redshift PBR Material Builder** | Detects common PBR texture channels, sets sensible Redshift color spaces, builds/connects a Redshift material graph, and can batch-create materials from texture folders. |
-| **Material Tag Organizer** | Cleans material/selection tags, merges duplicate materials by normalized name, sorts materials, standardizes names, and rebuilds polygon-selection/material-tag assignments. |
+| **Redshift PBR Material Builder** | Detects common PBR texture channels, sets appropriate Redshift color spaces, builds/connects a Redshift material graph, and can batch-create materials from texture folders. |
+| **Material Tag Organizer** | Cleans material/selection tags, merges duplicate materials by normalized name, sorts materials, standardizes names, and rebuilds polygon-selection/material-tag assignments. Works with native Cinema 4D materials as well as Redshift materials. |
 
-> These tools come from real production workflows and are released here as a standalone open-source toolkit. They do not contain source code from unrelated commercial plugins.
-
-![Material Tag Organizer overview](docs/images/material-tag-organizer-overview.png)
+These tools were built around practical Cinema 4D production workflows and are released as a small, standalone open-source toolkit.
 
 ## 1. Redshift PBR Material Builder
 
@@ -52,8 +52,6 @@ The plugin scans texture sampler nodes in the active Redshift material, classifi
 
 ### Filename examples
 
-Typical names that work well:
-
 ```text
 Wood_BaseColor.png
 Wood_Roughness.png
@@ -67,7 +65,9 @@ Wood_Displacement.exr
 
 ## 2. Material Tag Organizer
 
-Designed for imported characters, vehicles and other assets that can arrive with many material channels, selection tags and inconsistent names. The organizer works at Cinema 4D's material/tag level and is **not limited to Redshift**: it can organize tags that reference native/standard Cinema 4D materials as well as Redshift materials.
+Designed for imported characters, vehicles and other assets that can arrive with many material channels, selection tags and inconsistent names.
+
+The organizer works at Cinema 4D's material/tag level and is **not limited to Redshift**. It can organize tags that reference native/standard Cinema 4D materials as well as Redshift materials.
 
 ### Main features
 
@@ -89,7 +89,9 @@ Designed for imported characters, vehicles and other assets that can arrive with
 
 ### Important limitation
 
-Duplicate-material merging is currently **name-based**, not shader-graph-based. The organizer does not depend on a specific renderer for tag cleanup, but it also does not compare renderer-specific shader graphs when deciding whether materials are duplicates. If two different materials intentionally use names such as `Paint`, `Paint.1` and `Paint.2`, review the scene before running merge/organize on production data. Use versioned scene files or a backup for destructive cleanup operations.
+Duplicate-material merging is currently **name-based**, not shader-graph-based. The organizer does not depend on a specific renderer for tag cleanup, but it also does not compare renderer-specific shader graphs when deciding whether materials are duplicates.
+
+If different materials intentionally use names such as `Paint`, `Paint.1` and `Paint.2`, review the scene before running merge/organize on production data. Use versioned scene files or a backup for destructive cleanup operations.
 
 ## Installation
 
