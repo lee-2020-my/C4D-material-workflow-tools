@@ -1,41 +1,58 @@
 # C4D 材质工作流工具集
 
-这是一个面向 **Cinema 4D** 材质工作流的小型开源工具集，目前包含两个独立的 Python 插件：
+面向 **Cinema 4D** 的开源 Python 小工具集，目前包含 Redshift PBR 材质自动搭建与材质标签整理两个工具。
 
-1. **Redshift PBR Material Builder**：自动识别 PBR 贴图、设置色彩空间并连接 Redshift 材质节点，也支持从文件夹批量创建材质。
-2. **Material Tag Organizer**：清理、合并、排序和重建材质标签与多边形选集，适合处理导入后材质通道较多的角色、车辆等资产。
+[最新版本 v1.0.0](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/tag/v1.0.0) · [English](README.md) · [MIT License](LICENSE)
 
-## Redshift PBR Material Builder
+## 直接下载
 
-### 支持的主要通道
+**不用下载整个 GitHub 源码仓库。**按需要选一个即可：
 
-- Base Color / Albedo / Diffuse
-- AO
-- Roughness
-- Metalness
-- Normal / Bump
-- Displacement / Height
-- Opacity / Alpha
-- Emission
+| 下载 | 适合用途 |
+|---|---|
+| [**Redshift PBR Material Builder v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/Redshift-PBR-Material-Builder-v1.0.0.zip) | 自动识别 PBR 贴图并搭建/连接 Redshift 材质 |
+| [**Material Tag Organizer v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/Material-Tag-Organizer-v1.0.0.zip) | 清理和整理材质标签、选集与材质命名；支持 C4D 原生材质和 Redshift 材质 |
+| [**全部工具 v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/C4D-Material-Workflow-Tools-v1.0.0.zip) | 两个插件一起安装 |
 
-颜色和自发光贴图自动使用 sRGB；Roughness、Normal、Metalness 等数据贴图自动使用 Raw。
+## 安装方法
+
+1. 下载上面的 ZIP 并解压。
+2. 将解压得到的插件文件夹放到一个固定位置，例如 `D:\C4D_Plugins\`。
+3. Cinema 4D 中打开 **偏好设置 > Plugins（插件）**，把 `D:\C4D_Plugins\` 加入插件搜索路径。
+4. 重启 Cinema 4D。安装成功后可在 **Extensions（扩展）** 菜单中启动插件。
+
+> **Redshift PBR Material Builder** 需要 Redshift；**Material Tag Organizer** 工作在 C4D 材质/标签层面，并不限于 Redshift。
+
+## 1. Redshift PBR Material Builder
+
+### 主要功能
+
+- 自动识别 Base Color、AO、Roughness、Metalness、Normal/Bump、Displacement、Opacity、Emission 等常见 PBR 通道；
+- 颜色/自发光贴图使用 sRGB，数据贴图使用 Raw；
+- 自动连接 Redshift Standard Material 节点；
+- 支持文件夹批量识别并创建材质；
+- 可根据贴图组自动命名材质；
+- 带位移贴图时可配合对象位移/细分工作流。
 
 ### 已有材质自动连接
 
 1. 新建 Redshift Standard Material。
 2. 将一套 PBR 贴图拖入节点编辑器。
 3. 激活该材质。
-4. 运行 **Redshift PBR Material Builder** 的自动连接功能。
-
-插件会根据贴图文件名识别通道并自动建立连接。
+4. 打开 **Extensions > Redshift PBR Material Builder** 并执行自动连接。
 
 ### 文件夹批量创建
 
-选择包含 PBR 贴图的文件夹后，插件会根据文件名进行分组。当一组贴图包含至少 3 类可识别通道时，会自动创建对应 Redshift 材质。
+1. 将一套或多套 PBR 贴图放在文件夹中。
+2. 打开插件并选择文件夹导入功能。
+3. 选择贴图目录。
+4. 插件按文件名识别贴图组并自动创建 Redshift 材质。
 
-## Material Tag Organizer
+## 2. Material Tag Organizer
 
-主要用于整理导入资产中混乱的材质和标签。它工作在 Cinema 4D 的材质/标签层面，**并不限定 Redshift 渲染器**：默认/原生 Cinema 4D 材质和 Redshift 材质所对应的材质标签都可以整理。
+用于整理导入资产中混乱的材质、材质标签和多边形选集。它**不限于 Redshift**，C4D 默认/原生材质对应的材质标签同样可以处理。
+
+### 主要功能
 
 - 批量处理所选多边形对象；
 - 清理无效材质标签、孤立选集等；
@@ -43,12 +60,21 @@
 - 材质按 A-Z 排序；
 - 材质统一增加 `M_` 前缀并清洗非法字符；
 - 重建选集与材质标签；
-- 选集统一命名为 `00_M_xxx_Set` 一类格式；
+- 选集按 `00_M_xxx_Set` 一类格式整理；
 - 完成后显示处理统计。
 
-### 重要提醒
+### 使用方法
 
-当前“重复材质合并”依据的是**材质名称**，而不是完整比较材质节点图。整理标签本身不依赖特定渲染器，但插件也不会比较不同渲染器内部的着色节点图来判断材质是否真正相同。
+1. 建议先另存一份场景副本。
+2. 选择一个或多个需要整理的多边形对象。
+3. 打开 **Extensions > Material Tag Organizer**。
+4. 选择需要的清理/合并/整理选项后执行。
+
+> **建议先备份场景：**整理操作可能修改材质标签、选集和材质分配关系。
+
+### 当前限制
+
+“重复材质合并”目前主要依据**材质名称**，而不是完整比较材质节点图。如果不同材质故意使用 `Paint`、`Paint.1`、`Paint.2` 一类名称，请先确认再执行合并。
 
 ## License
 
