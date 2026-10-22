@@ -10,9 +10,8 @@ Open-source **Cinema 4D Python utilities** for repetitive material workflows, wi
 
 | Download | Best for |
 |---|---|
-| [**Redshift PBR Material Builder v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/Redshift-PBR-Material-Builder-v1.0.0.zip) | Automatically building and connecting Redshift PBR materials |
-| [**Material Tag Organizer v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/Material-Tag-Organizer-v1.0.0.zip) | Cleaning and reorganizing Cinema 4D material/selection tags; works with native C4D materials and Redshift materials |
-| [**All tools v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/C4D-Material-Workflow-Tools-v1.0.0.zip) | Installing both tools |
+| [**Redshift PBR Material Builder v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/raw/refs/heads/main/dist/Redshift-PBR-Material-Builder-v1.0.0.zip) | Automatically building and connecting Redshift PBR materials |
+| [**Material Tag Organizer v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/raw/refs/heads/main/dist/Material-Tag-Organizer-v1.0.0.zip) | Cleaning and reorganizing Cinema 4D material/selection tags; works with native C4D materials and Redshift materials |
 
 ## Installation
 
