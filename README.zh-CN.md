@@ -10,9 +10,8 @@
 
 | 下载 | 适合用途 |
 |---|---|
-| [**Redshift PBR Material Builder v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/Redshift-PBR-Material-Builder-v1.0.0.zip) | 自动识别 PBR 贴图并搭建/连接 Redshift 材质 |
-| [**Material Tag Organizer v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/Material-Tag-Organizer-v1.0.0.zip) | 清理和整理材质标签、选集与材质命名；支持 C4D 原生材质和 Redshift 材质 |
-| [**全部工具 v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/releases/download/v1.0.0/C4D-Material-Workflow-Tools-v1.0.0.zip) | 两个插件一起安装 |
+| [**Redshift PBR Material Builder v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/raw/refs/heads/main/dist/Redshift-PBR-Material-Builder-v1.0.0.zip) | 自动识别 PBR 贴图并搭建/连接 Redshift 材质 |
+| [**Material Tag Organizer v1.0.0**](https://github.com/lee-2020-my/C4D-material-workflow-tools/raw/refs/heads/main/dist/Material-Tag-Organizer-v1.0.0.zip) | 清理和整理材质标签、选集与材质命名；支持 C4D 原生材质和 Redshift 材质 |
 
 ## 安装方法
 
